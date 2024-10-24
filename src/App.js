@@ -12,13 +12,13 @@ function App() {
     <ThemeContextProvider>
       <Router>
         <div className="App">
-         {/* <Header /> */}
+         {<Header />}
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/movie/:id" element={<MovieDetails />} />
             <Route path="/favorites" element={<Favorites />} />
           </Routes>
-         {/* <Footer /> */}
+         {<Footer />}
         </div>
       </Router>
     </ThemeContextProvider>
