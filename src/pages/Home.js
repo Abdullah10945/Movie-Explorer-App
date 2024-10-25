@@ -1,32 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import MovieList from '../components/MovieList';
 import SearchBar from '../components/SearchBar';
 
-const moviesData = [
-  { imdbID: '1', Title: 'Inception', Year: '2010', imdbRating: '8.8' },
-  { imdbID: '2', Title: 'The Matrix', Year: '1999', imdbRating: '8.7' },
-  { imdbID: '3', Title: 'Interstellar', Year: '2014', imdbRating: '8.6' },
-  { imdbID: '4', Title: 'The Dark Knight', Year: '2008', imdbRating: '9.0' },
-  { imdbID: '5', Title: 'Fight Club', Year: '1999', imdbRating: '8.8' }
-];
-
-function Home() {
-  const [movies, setMovies] = useState(moviesData);
-  //const [searchTerm, setSearchTerm] = useState('');
-
-  const handleSearch = (term) => {
-    const filteredMovies = moviesData.filter((movie) =>
-      movie.Title.toLowerCase().includes(term.toLowerCase())
-    );
-    setMovies(filteredMovies);
+const Home = () => {
+  const [searchResults, setSearchResults] = useState([]);
+  const movies = [
+    { id: 1, title: 'Inception', releaseDate: '2010', rating: '8.8' },
+    { id: 2, title: 'Interstellar', releaseDate: '2014', rating: '8.6' }
+  ];
+  useEffect(()=>{
+    setSearchResults(movies)
+  },[])
+  const handleSearch = (query) => {
+    if (query !== "") {
+      const newData = searchResults?.filter((item)=> item.title.toLowerCase().includes(query.toLowerCase()))
+      setSearchResults(newData)
+    }else{
+      setSearchResults(movies)
+    }
   };
 
   return (
     <div>
-      <SearchBar setSearchTerm={handleSearch} />
-      <MovieList movies={movies} />
+      <SearchBar onSearch={handleSearch} />
+      <MovieList movies={searchResults} />
     </div>
   );
-}
+};
 
 export default Home;

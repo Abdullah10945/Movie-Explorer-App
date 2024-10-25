@@ -1,23 +1,12 @@
-import React, { useContext } from 'react';
-import { ThemeContext } from '../context/ThemeContext';
+import React from 'react';
 
-function Favorites() {
-  const { favorites } = useContext(ThemeContext);
-
-  if (favorites.length === 0) {
-    return <p>No favorites yet!</p>;
-  }
-
+const Favorites = () => {
   return (
     <div>
       <h2>Your Favorite Movies</h2>
-      <ul>
-        {favorites.map((movie) => (
-          <li key={movie.id}>{movie.title}</li>
-        ))}
-      </ul>
+      <p>Favorites functionality will be added soon.</p>
     </div>
   );
-}
+};
 
 export default Favorites;
